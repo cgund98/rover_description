@@ -2,10 +2,14 @@
 
 <launch>
 
-      <include file="$(find rover_description)/launch/spawn_urdf.launch">
-          <arg name="z" value=".2" />
-          <arg name="urdf_robot_file" value="$(find rover_description)/urdf/rover_description.urdf" />
-          <arg name="robot_name" value="rover" />
-      </include>
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.0" />
+    <arg name="robot_name" default=""/>
+
+    <param name="robot_description" command="cat $(find rover_description)/urdf/rover_description.urdf" />
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -model rover -param robot_description"/>
 
 </launch>

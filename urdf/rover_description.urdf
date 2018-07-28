@@ -62,7 +62,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/left_motor.STL" />
+          filename="package://rover_description/meshes/motor.STL" />
       </geometry>
       <material
         name="">
@@ -76,7 +76,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/left_motor.STL" />
+          filename="package://rover_description/meshes/motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -115,7 +115,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/left_wheel.STL" />
+          filename="package://rover_description/meshes/wheel.STL" />
       </geometry>
       <material
         name="">
@@ -129,7 +129,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/left_wheel.STL" />
+          filename="package://rover_description/meshes/wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -144,7 +144,7 @@
     <child
       link="left_wheel" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
   </joint>
   <link
     name="right_motor">
@@ -168,7 +168,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/right_motor.STL" />
+          filename="package://rover_description/meshes/motor.STL" />
       </geometry>
       <material
         name="">
@@ -182,7 +182,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/right_motor.STL" />
+          filename="package://rover_description/meshes/motor.STL" />
       </geometry>
     </collision>
   </link>
@@ -221,7 +221,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/right_wheel.STL" />
+          filename="package://rover_description/meshes/wheel.STL" />
       </geometry>
       <material
         name="">
@@ -235,7 +235,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rover_description/meshes/right_wheel.STL" />
+          filename="package://rover_description/meshes/wheel.STL" />
       </geometry>
     </collision>
   </link>
@@ -250,7 +250,7 @@
     <child
       link="right_wheel" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
   </joint>
   <link
     name="kinect">
@@ -412,6 +412,66 @@
       xyz="0 1 0" />
   </joint>
 
+  <link name="kinect_rgb">
+      <!-- <inertial>
+        <mass value="1e-5"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius=".01"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius=".01"/>
+        </geometry>
+      </visual> -->
+    </link>
+
+    <joint name="kinect_base_rgb" type="fixed">
+      <origin xyz="0.014 0.075 0.06" rpy="0 0 1.57079632679"/>
+      <parent link="base_link"/>
+      <child link="kinect_rgb"/>
+    </joint>
+
+    <link name="kinect_depth">
+      <!-- <inertial>
+        <mass value="1e-5"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius=".01"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius=".01"/>
+        </geometry>
+      </visual> -->
+    </link>
+
+    <joint name="kinect_base_depth" type="fixed">
+      <origin xyz="-0.013 0.075 0.06" rpy="-1.57079632679 0 0"/>
+      <parent link="base_link"/>
+      <child link="kinect_depth"/>
+    </joint>
+
+    <link name="scan_link"/>
+
+    <joint name="depth_scan" type="fixed">
+      <origin xyz="0 0 0" rpy="1.57079632679 -1.57079632679 0"/>
+      <parent link="kinect_depth"/>
+      <child link="scan_link"/>
+    </joint>
+
   <gazebo reference="kinect">
       <material>Gazebo/Black</material>
   </gazebo>
@@ -448,8 +508,8 @@
       <publishWheelJointState>true</publishWheelJointState>
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
-      <leftJoint>left_motor_wheel</leftJoint>
-      <rightJoint>right_motor_wheel</rightJoint>
+      <leftJoint>right_motor_wheel</leftJoint>
+      <rightJoint>left_motor_wheel</rightJoint>
       <wheelSeparation>0.3</wheelSeparation>
       <wheelDiameter>0.1016</wheelDiameter>
       <broadcastTF>1</broadcastTF>
@@ -483,5 +543,42 @@
           <mechanicalReduction>1</mechanicalReduction>
       </actuator>
   </transmission>
+
+  <gazebo reference="kinect_rgb">  
+      <sensor type="depth" name="camera">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera>
+          <horizontal_fov>1.0471975512</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>8.0</far>
+          </clip>
+        </camera>
+        <plugin name="kinect_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+          <cameraName>camera</cameraName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>10</updateRate>
+          <imageTopicName>rgb/image_raw</imageTopicName>
+          <depthImageTopicName>depth/image_raw</depthImageTopicName>
+          <pointCloudTopicName>depth/points</pointCloudTopicName>
+          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+          <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+          <frameName>kinect_depth</frameName>
+          <baseline>0.1</baseline>
+          <distortion_k1>0.0</distortion_k1>
+          <distortion_k2>0.0</distortion_k2>
+          <distortion_k3>0.0</distortion_k3>
+          <distortion_t1>0.0</distortion_t1>
+          <distortion_t2>0.0</distortion_t2>
+          <pointCloudCutoff>0.4</pointCloudCutoff>
+        </plugin>
+      </sensor>
+    </gazebo>
 
 </robot>
