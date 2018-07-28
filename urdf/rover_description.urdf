@@ -1,0 +1,487 @@
+<robot
+  name="rover_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00093677 -0.067236 0.0052176"
+        rpy="0 0 0" />
+      <mass
+        value="0.23396" />
+      <inertia
+        ixx="0.0017771"
+        ixy="-3.048E-18"
+        ixz="1.8439E-17"
+        iyy="0.0013208"
+        iyz="-6.1924E-17"
+        izz="0.0030975" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="left_motor">
+    <inertial>
+      <origin
+        xyz="-0.07744 0.061196 -0.021715"
+        rpy="0 0 0" />
+      <mass
+        value="0.1138" />
+      <inertia
+        ixx="2.1583E-05"
+        ixy="3.0364E-10"
+        ixz="4.8958E-06"
+        iyy="0.00011195"
+        iyz="-2.1905E-12"
+        izz="0.00011048" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/left_motor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/left_motor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_base_motor"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_motor" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="-2.764E-06 4.8644E-06 0.005478"
+        rpy="0 0 0" />
+      <mass
+        value="0.081427" />
+      <inertia
+        ixx="7.3757E-05"
+        ixy="-1.5974E-09"
+        ixz="-1.4221E-09"
+        iyy="7.3759E-05"
+        iyz="2.4596E-09"
+        izz="0.0001415" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_motor_wheel"
+    type="continuous">
+    <origin
+      xyz="-0.154088226956502 0.0611962943866442 -0.0153699991323036"
+      rpy="1.5707963267949 -6.12303176911189E-17 -1.5707963267949" />
+    <parent
+      link="left_motor" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="right_motor">
+    <inertial>
+      <origin
+        xyz="0.079313 0.061196 -0.021715"
+        rpy="0 0 0" />
+      <mass
+        value="0.1138" />
+      <inertia
+        ixx="2.1583E-05"
+        ixy="3.0363E-10"
+        ixz="-4.8958E-06"
+        iyy="0.00011195"
+        iyz="2.191E-12"
+        izz="0.00011048" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/right_motor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/right_motor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_base_motor"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_motor" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="-2.764E-06 -4.8644E-06 -0.005478"
+        rpy="0 0 0" />
+      <mass
+        value="0.081427" />
+      <inertia
+        ixx="7.3757E-05"
+        ixy="1.5974E-09"
+        ixz="1.4221E-09"
+        iyy="7.3759E-05"
+        iyz="2.4596E-09"
+        izz="0.0001415" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_motor_wheel"
+    type="continuous">
+    <origin
+      xyz="0.155961773043498 0.0611961975622282 -0.0153699991323079"
+      rpy="-1.5707963267949 6.12303176911189E-17 1.5707963267949" />
+    <parent
+      link="right_motor" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="kinect">
+    <inertial>
+      <origin
+        xyz="-0.0068373 0.0042244 0.031822"
+        rpy="0 0 0" />
+      <mass
+        value="0.65866" />
+      <inertia
+        ixx="0.00041777"
+        ixy="9.1647E-07"
+        ixz="-3.4668E-07"
+        iyy="0.0031339"
+        iyz="-3.614E-06"
+        izz="0.003112" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/kinect.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/kinect.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_kinect"
+    type="fixed">
+    <origin
+      xyz="-0.00759452430503809 0.0504215122087093 0.0200553726387249"
+      rpy="6.12303176911189E-17 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="kinect" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="back_servo">
+    <inertial>
+      <origin
+        xyz="-0.02692 -0.19456 -0.0084858"
+        rpy="0 0 0" />
+      <mass
+        value="0.044316" />
+      <inertia
+        ixx="1.0438E-05"
+        ixy="-4.5012E-08"
+        ixz="7.3126E-08"
+        iyy="8.9687E-06"
+        iyz="5.0183E-09"
+        izz="1.4219E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_servo.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_servo.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_base_servo"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_servo" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="back_wheel">
+    <inertial>
+      <origin
+        xyz="-8.2119E-11 0.0062661 -1.1759E-10"
+        rpy="0 0 0" />
+      <mass
+        value="0.080367" />
+      <inertia
+        ixx="7.364E-05"
+        ixy="-1.8539E-14"
+        ixz="-9.0226E-14"
+        iyy="0.00014142"
+        iyz="-5.5154E-11"
+        izz="7.364E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_servo_wheel"
+    type="continuous">
+    <origin
+      xyz="-0.00543822695650345 -0.184603754025564 -0.0108699152799119"
+      rpy="-1.76320433342964E-14 -0.648623383307188 -1.57079632679489" />
+    <parent
+      link="back_servo" />
+    <child
+      link="back_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <gazebo reference="kinect">
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="left_wheel">
+      <kp>1000.0</kp>
+      <kd>1000.0</kd>
+      <mu1>1</mu1>
+      <mu2>1</mu2>
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="right_wheel">
+      <kp>1000.0</kp>
+      <kd>1000.0</kd>
+      <mu1>1</mu1>
+      <mu2>1</mu2>
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="back_wheel">
+      <kp>1000</kp>
+      <kd>1000</kd>
+      <mu1>1</mu1>
+      <mu2>1</mu2>
+      <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller_front">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>True</publishWheelTF>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <leftJoint>left_motor_wheel</leftJoint>
+      <rightJoint>right_motor_wheel</rightJoint>
+      <wheelSeparation>0.3</wheelSeparation>
+      <wheelDiameter>0.1016</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <transmission name="tran1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_motor_wheel">
+          <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor1">
+          <hardwareInterface>VelocityJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_motor_wheel">
+          <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor2">
+          <hardwareInterface>VelocityJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+</robot>

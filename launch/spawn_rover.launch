@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+      <include file="$(find rover_description)/launch/spawn_urdf.launch">
+          <arg name="z" value=".2" />
+          <arg name="urdf_robot_file" value="$(find rover_description)/urdf/rover_description.urdf" />
+          <arg name="robot_name" value="rover" />
+      </include>
+
+</launch>
