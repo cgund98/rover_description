@@ -14,6 +14,11 @@
         <remap from="/joint_states" to="rover/joint_states"/>
     </node>
 
+    <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" >
         <param name="scan_height" value="3"/> 
         <param name="output_frame_id" value="scan_link"/>

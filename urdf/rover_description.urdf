@@ -1,5 +1,17 @@
 <robot
   name="rover_description">
+  <link name="base_footprint" />
+  <joint name="base_joint" type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -1.57079632679" />
+    <parent
+      link="base_footprint" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
   <link
     name="base_link">
     <inertial>
@@ -518,7 +530,7 @@
       <commandTopic>cmd_vel</commandTopic>
       <odometryFrame>odom</odometryFrame>
       <odometryTopic>odom</odometryTopic>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
     </plugin>
   </gazebo>
 
@@ -580,5 +592,18 @@
         </plugin>
       </sensor>
     </gazebo>
+
+    <gazebo>
+       <joint name="world_joint" type="revolute">
+         <parent link="world"/>
+         <child link="base_footprint"/>
+       </joint>
+     </gazebo>
+     <gazebo>
+       <joint name="odom_joint" type="revolute">
+         <parent link="odom"/>
+         <child link="base_footprint"/>
+       </joint>
+     </gazebo>
 
 </robot>
